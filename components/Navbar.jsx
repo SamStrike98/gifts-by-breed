@@ -43,7 +43,7 @@ const navLinks = [
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
     return (
-        <header className="fixed md:relative md:flex w-full h-[100px] overflow-y-hidden bg-primary md:z-10 z-50">
+        <header className="fixed md:relative md:flex w-full h-[100px] overflow-y-hidden bg-primary md:z-10 z-50 border-b-2 border-white">
             <Container>
                 <div className="flex flex-row justify-between items-center px-8 w-full bg-primary z-50">
                     <Image alt="logo" src="/gbb_logo2.png" height={100} width={100} />
@@ -76,7 +76,7 @@ const Navbar = () => {
 
                 <nav className={`fixed bg-secondary text-white flex flex-col justify-evenly items-center mt-[100px] h-[300px] w-full z-40 ${isOpen ? 'translate-y-0' : '-translate-y-[400px]'} transition-all duration-600 md:hidden`}>
                     {navLinks.map(item => (
-                        <Link key={item.id} href={item.link} className="w-full h-full flex flex-row justify-center items-center bg-secondary hover:bg-primary transition-all">{item.title}</Link>
+                        <Link key={item.id} href={item.link} className="w-full h-full flex flex-row justify-center items-center bg-secondary hover:bg-primary text=lg font-bold transition-all">{item.title}</Link>
                     ))}
                 </nav>
             </Container>
