@@ -79,7 +79,7 @@ const BreedList = () => {
                 <div className='flex flex-col items-center'>
                     <SectionTitle text="List of Breeds" color="primary" />
 
-                    <ul className='flex flex-row flex-wrap w-full justify-between px-4'>
+                    <ul className='flex flex-row flex-wrap w-full justify-center sm:justify-between items-center px-4'>
                         {breedsArr.map(breed => (
                             <BreedCard key={breed.id} name={breed.name} link={breed.link} img={breed.image} />
                         ))}
