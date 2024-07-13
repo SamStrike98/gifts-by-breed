@@ -1,16 +1,18 @@
 import Container from "@/components/Container"
 import SectionTitle from "@/components/ui/SectionTitle"
 
-const Reviews = () => {
+const Charities = () => {
     return (
-        <section className='bg-secondary min-h-[500px]'>
+        <section className='bg-primary min-h-[500px]'>
             <Container>
                 <div>
-                    <SectionTitle text="Reviews" color="white" />
+                    <SectionTitle text="Charities" color="white" />
+
+
                 </div>
             </Container>
         </section>
     )
 }
 
-export default Reviews
+export default Charities

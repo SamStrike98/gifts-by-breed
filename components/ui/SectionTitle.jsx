@@ -5,7 +5,8 @@ import { FaPaw } from "react-icons/fa";
 const SectionTitle = ({ text, color }) => {
     const colorList = {
         primary: 'text-primary',
-        secondary: 'text-secondary'
+        secondary: 'text-secondary',
+        white: 'text-white'
     }
     return (
         <div className="flex flex-row items-center pt-10 px-3 gap-6 sm:gap-8">

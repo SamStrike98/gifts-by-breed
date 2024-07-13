@@ -1,13 +1,13 @@
 import Container from "@/components/Container"
-import ProductCard from "@/components/ui/ProductCard"
 import SectionTitle from "@/components/ui/SectionTitle"
+import ProductCard from "@/components/ui/ProductCard"
 
-const FeaturedProducts = () => {
+const SimilarProducts = () => {
     return (
-        <section className='bg-[#f2f2f2] min-h-[500px]'>
+        <section className='bg-secondary w-full min-h-[500px]'>
             <Container>
                 <div>
-                    <SectionTitle text="Featured Products" color="secondary" />
+                    <SectionTitle text="Similar Products" color="white" />
 
                     <ProductCard id={1} name={"Dachshund Bookmark"} img={'/dachshund.png'} price={2.50} />
                 </div>
@@ -16,4 +16,4 @@ const FeaturedProducts = () => {
     )
 }
 
-export default FeaturedProducts
+export default SimilarProducts
