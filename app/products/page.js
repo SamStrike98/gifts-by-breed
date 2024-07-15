@@ -3,7 +3,7 @@ import ProductCard from '@/components/ui/ProductCard'
 
 
 const page = async () => {
-    const res = await fetch(`${process.env.URL}/api/products`, { next: { revalidate: 1800 } })
+    const res = await fetch(`${process.env.URL}/api/products`)
     const products = await res.json()
     console.log(products)
 
