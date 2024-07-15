@@ -8,7 +8,7 @@ const ProductCard = ({ id, name, price, img }) => {
             <Link href={`/products/${id}`} className='w-full h-full'>
                 <div className='h-full w-full overflow-hidden'>
                     <div className='bg-white rounded-lg w-full overflow-hidden h-[60%%] pt-2'>
-                        <Image alt={`Image of a ${name}`} className='object-cover' src={img} width={500} height={500} />
+                        {/* <Image alt={`Image of a ${name}`} className='object-cover' src={img} width={500} height={500} /> */}
                     </div>
                     <div className="flex flex-col items-center">
                         <h4 className='font-bold text-lg text-white text-center'>{name}</h4>
