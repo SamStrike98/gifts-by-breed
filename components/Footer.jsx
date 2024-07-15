@@ -13,8 +13,8 @@ const Footer = () => {
             <Container>
                 <div className='h-[300px] w-full flex flex-col items-center justify-between py-10'>
                     <div className='w-full flex flex-row justify-center'>
-                        <div className=' w-[60%] flex flex-col sm:flex-row px-auto justify-evenly'>
-                            <ul className='w-1/2 flex flex-row justify-evenly'>
+                        <div className=' w-[60%] flex flex-col sm:flex-row px-auto justify-evenly gap-3'>
+                            <ul className='w-full sm:w-1/2 flex flex-row justify-evenly'>
                                 <span className='text-white hover:text-secondary transition-all cursor-pointer'>
                                     <GrFacebookOption size={30} />
                                 </span>
@@ -31,7 +31,7 @@ const Footer = () => {
                                     <FaXTwitter size={30} />
                                 </span>
                             </ul>
-                            <ul className='w-1/2 flex flex-row justify-evenly font-bold'>
+                            <ul className='w-full sm:w-1/2 flex flex-row justify-evenly font-bold'>
                                 <span className='text-white hover:text-secondary transition-all cursor-pointer'>
                                     Socials
                                 </span>
