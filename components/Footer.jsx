@@ -31,7 +31,7 @@ const Footer = () => {
                                     <FaXTwitter size={30} />
                                 </span>
                             </ul>
-                            <ul className='w-full sm:w-1/2 flex flex-row justify-evenly font-bold'>
+                            <ul className='w-full sm:w-1/2 flex flex-row justify-evenly font-bold gap-3'>
                                 <span className='text-white hover:text-secondary transition-all cursor-pointer'>
                                     Socials
                                 </span>
@@ -54,8 +54,10 @@ const Footer = () => {
                     </div>
 
 
-                    <div className='text-white'>
-                        Gifts By Breed © 2024 | Website Design By Sam Strike
+                    <div className='text-white flex flex-col sm:flex-row sm:gap-2 sm:justify-center justify-evenly items-center px-auto w-[80%]'>
+                        <p>Gifts By Breed © 2024</p>
+                        <p className='sm:flex hidden'>|</p>
+                        <p>Website Design By Sam Strike</p>
                     </div>
                 </div>
             </Container>

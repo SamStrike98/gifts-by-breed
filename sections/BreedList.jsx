@@ -8,37 +8,37 @@ const breedsArr = [
     {
         id: 1,
         name: "Labrador Retriever",
-        link: '/products/category/labrador_retriever',
+        link: '/products/categories/labrador_retriever',
         image: '/labrador_retriever.png'
     },
     {
         id: 2,
         name: "German Shepherd",
-        link: '/products/category/german_shepherd',
+        link: '/products/categories/german_shepherd',
         image: '/german_shepherd.png'
     },
     {
         id: 3,
         name: "Golden Retriever",
-        link: '/products/category/golden_retriever',
+        link: '/products/categories/golden_retriever',
         image: '/golden_retriever.png'
     },
     {
         id: 4,
         name: "French Bulldog",
-        link: '/products/category/french_bulldog',
+        link: '/products/categories/french_bulldog',
         image: '/french_bulldog.png'
     },
     {
         id: 5,
         name: "Bulldog",
-        link: '/products/category/bulldog',
+        link: '/products/categories/bulldog',
         image: '/bulldog.png'
     },
     {
         id: 6,
         name: "Beagle",
-        link: '/products/category/beagle',
+        link: '/products/categories/beagle',
         image: '/beagle.png'
     },
     // {
@@ -50,25 +50,25 @@ const breedsArr = [
     {
         id: 8,
         name: "Rottweiler",
-        link: '/products/category/rottweiler',
+        link: '/products/categories/rottweiler',
         image: '/rottweiler.png'
     },
     {
         id: 9,
         name: "German Shorthaired Pointer",
-        link: '/products/category/german_shorthaired_pointer',
+        link: '/products/categories/german_shorthaired_pointer',
         image: '/german_shorthaired_pointer.png'
     },
     {
         id: 10,
         name: "Yorkshire Terrier",
-        link: '/products/category/yorkshire_terrier',
+        link: '/products/categories/yorkshire_terrier',
         image: '/yorkshire_terrier.png'
     },
     {
         id: 11,
         name: "Dachshund",
-        link: '/products/category/dachshund',
+        link: '/products/categories/dachshund',
         image: '/dachshund.png'
     }
 ]

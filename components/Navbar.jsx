@@ -76,7 +76,7 @@ const Navbar = () => {
 
                 <nav className={`fixed bg-secondary text-white flex flex-col justify-evenly items-center mt-[100px] h-[300px] w-full z-40 ${isOpen ? 'translate-y-0' : '-translate-y-[400px]'} transition-all duration-600 md:hidden`}>
                     {navLinks.map(item => (
-                        <Link key={item.id} href={item.link} className="w-full h-full flex flex-row justify-center items-center bg-secondary hover:bg-primary text=lg font-bold transition-all">{item.title}</Link>
+                        <Link key={item.id} href={item.link} onClick={() => setIsOpen(!isOpen)} className="w-full h-full flex flex-row justify-center items-center bg-secondary hover:bg-primary text=lg font-bold transition-all">{item.title}</Link>
                     ))}
                 </nav>
             </Container>
