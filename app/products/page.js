@@ -3,7 +3,7 @@ import ProductCard from '@/components/ui/ProductCard'
 
 
 const page = async () => {
-    const res = await fetch(`${process.env.URL}/api/products`)
+    const res = await fetch(`${process.env.URL}/api/products`, { cache: 'no-cache' })
     const products = await res.json()
     console.log(products)
 
