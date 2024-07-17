@@ -12,6 +12,7 @@ import { FaPaw } from "react-icons/fa";
 import { LiaTimesSolid } from "react-icons/lia";
 import { RxHamburgerMenu } from "react-icons/rx";
 import CartIcon from "./ui/CartIcon";
+import UserIcon from "./ui/UserIcon";
 
 const navLinks = [
     {
@@ -44,7 +45,7 @@ const navLinks = [
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
     return (
-        <header className="fixed md:relative md:flex w-full h-[100px] overflow-y-hidden bg-primary md:z-10 z-50 border-b-2 border-white">
+        <header className="fixed md:relative md:flex w-full h-[100px] bg-primary md:z-10 z-50">
             <Container>
                 <div className="flex flex-row justify-between items-center px-8 w-full bg-primary z-50">
                     <Image alt="logo" src="/gbb_logo2.png" height={100} width={100} />
@@ -64,9 +65,10 @@ const Navbar = () => {
                         </span> */}
                         <CartIcon />
 
-                        <span className="cursor-pointer">
+                        {/* <span className="cursor-pointer">
                             <MdAccountCircle size={30} color="white" />
-                        </span>
+                        </span> */}
+                        <UserIcon />
 
                         <span className="md:hidden pr-5 cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
                             {isOpen ? <LiaTimesSolid size={30} color="white" /> : <RxHamburgerMenu size={30} color="white" />}

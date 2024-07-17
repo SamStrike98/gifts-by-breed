@@ -13,7 +13,7 @@ const Button = ({ text, color, textColor }) => {
         white: "text-white"
     }
     return (
-        <button className={`${colorVariants[color]} ${textVariants[textColor]} rounded-md px-2 py-1`}>{text}</button>
+        <button className={`font-bold ${colorVariants[color]} ${textVariants[textColor]} hover:bg-opacity-85 rounded-md px-2 py-2`}>{text}</button>
     )
 }
 
