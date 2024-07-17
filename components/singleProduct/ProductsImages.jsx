@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from "react"
+import Image from "next/image"
 
-const ProductsImages = () => {
+const ProductsImages = ({ img, alt }) => {
     const [largeImg, setLargeImg] = useState(0)
     const arr = [
         {
@@ -33,7 +34,8 @@ const ProductsImages = () => {
 
         <div className='flex flex-row md:flex-col gap-2 my-10'>
             <div>
-                <div className='w-[250px] h-[250px] flex flex-row justify-center items-center rounded-md bg-blue-400 text-white text-4xl'>{arr[largeImg].text}</div>
+                <Image src={img} alt={alt} width={250} height={250} className="rounded-md object-cover" />
+                {/* <div className='w-[250px] h-[250px] flex flex-row justify-center items-center rounded-md bg-blue-400 text-white text-4xl'>{arr[largeImg].text}</div> */}
             </div>
             <ul className='flex flex-col md:flex-row justify-between'>
 

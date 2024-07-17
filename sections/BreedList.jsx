@@ -1,5 +1,6 @@
 import Container from '@/components/Container'
 import BreedCard from '@/components/ui/BreedCard'
+import Button from '@/components/ui/Button'
 import SectionTitle from '@/components/ui/SectionTitle'
 import Link from 'next/link'
 
@@ -77,7 +78,7 @@ const BreedList = () => {
     return (
         <section className='bg-[#f2f2f2] min-h-[500px]'>
             <Container>
-                <div className='flex flex-col items-center'>
+                <div className='flex flex-col items-center py-4'>
                     <SectionTitle text="List of Breeds" color="primary" />
 
                     <ul className='flex flex-row flex-wrap gap-1 w-full justify-center sm:justify-between items-center px-3'>
@@ -85,6 +86,8 @@ const BreedList = () => {
                             <BreedCard key={breed.id} name={breed.name} link={breed.link} img={breed.image} />
                         ))}
                     </ul>
+
+                    <Button text="All Breeds" color="primary" textColor="white" />
                 </div>
             </Container>
         </section>

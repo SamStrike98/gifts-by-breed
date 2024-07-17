@@ -26,7 +26,7 @@ export const GET = async (request) => {
 export const POST = async (request) => {
     // if (request.auth?.user.role === 'admin') {
     try {
-        const { name, isPublic, price, stock, description, featured, breed } = await request.json();
+        const { name, isPublic, price, stock, description, featured, breed, img } = await request.json();
 
         // Create a DB Connection
         await dbConnect();
@@ -36,7 +36,7 @@ export const POST = async (request) => {
 
         // Form a DB Payload
         const newProduct = {
-            name, createdAt, isPublic, price, stock, description, featured, breed
+            name, createdAt, isPublic, price, stock, description, featured, breed, img
         };
 
         // Update the DB

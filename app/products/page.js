@@ -8,19 +8,20 @@ const page = async () => {
     console.log(products)
 
     return (
-        <div className='min-h-[1000px]'>
+        <div className='md:pt-0 pt-[100px]'>
             <Container>
-                <div>
+                <div className='w-full'>
                     {
                         products &&
 
-                        <ul>
+                        <ul className='flex flex-row flex-wrap gap-1 w-full justify-center sm:justify-between items-center px-3'>
                             {products.map(product => (
-                                <ProductCard key={product._id} id={product._id} name={product.name} price={product.price} />
+                                <ProductCard key={product._id} id={product._id} name={product.name} price={product.price} img={product.img} />
                             ))}
                         </ul>
                     }
                 </div>
+                <p>Pagination</p>
             </Container>
         </div>
     )

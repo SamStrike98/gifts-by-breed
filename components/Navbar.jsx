@@ -11,6 +11,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FaPaw } from "react-icons/fa";
 import { LiaTimesSolid } from "react-icons/lia";
 import { RxHamburgerMenu } from "react-icons/rx";
+import CartIcon from "./ui/CartIcon";
 
 const navLinks = [
     {
@@ -58,9 +59,10 @@ const Navbar = () => {
                     </nav>
 
                     <div className="flex flex-row w-1/4 justify-end gap-5">
-                        <span className="cursor-pointer">
+                        {/* <span className="cursor-pointer">
                             <FaShoppingCart size={30} color="white" />
-                        </span>
+                        </span> */}
+                        <CartIcon />
 
                         <span className="cursor-pointer">
                             <MdAccountCircle size={30} color="white" />
