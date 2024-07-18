@@ -66,7 +66,7 @@ const Navbar = ({ session }) => {
                         {/* <span className="cursor-pointer">
                             <FaShoppingCart size={30} color="white" />
                         </span> */}
-                        <CartIcon />
+                        <CartIcon userId={session?.user.id} cartTotal={session?.user.cart.length} />
 
                         {/* <span className="cursor-pointer">
                             <MdAccountCircle size={30} color="white" />

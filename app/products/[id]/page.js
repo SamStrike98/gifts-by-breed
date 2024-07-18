@@ -6,6 +6,7 @@ import ProductDetails from '@/components/singleProduct/ProductDetails'
 import React from 'react'
 import FeaturedProducts from '@/sections/FeaturedProducts'
 import SimilarProducts from '@/sections/SimilarProducts'
+import { auth } from '@/auth'
 
 // const product = {
 //     id: 1,
@@ -16,6 +17,7 @@ import SimilarProducts from '@/sections/SimilarProducts'
 
 const page = async ({ params }) => {
     const productId = params.id
+    const session = await auth()
 
     const res = await fetch(`${process.env.URL}/api/products/${productId}`, { cache: 'no-store' })
     const product = await res.json()
@@ -28,7 +30,7 @@ const page = async ({ params }) => {
 
                         <div className='w-[80%] md:w-1/3 flex flex-col items-center'>
                             <ProductDetails name={product.name} price={product.price} />
-                            <AddToCartBtn />
+                            <AddToCartBtn product={product} session={session} />
                             <ProductDescription description={product.description} />
                         </div>
 

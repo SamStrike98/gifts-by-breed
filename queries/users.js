@@ -6,9 +6,19 @@ export async function addProductToUserCart(userId, product) {
     try {
         const user = await User.findOneAndUpdate(
             { _id: userId },
-            { $push: { cart: product } }
+            { $push: { cart: product } },
+            { new: true }
         );
         return user;
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+export async function getCart(userId) {
+    try {
+        const cart = await User.find({ _id: userId }, { cart: 1 });
+        return cart;
     } catch (error) {
         throw new Error(error)
     }
