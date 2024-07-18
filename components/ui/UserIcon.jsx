@@ -1,11 +1,24 @@
 'use client'
 import { useState } from "react"
-
+import Link from "next/link"
 import { MdAccountCircle } from "react-icons/md"
+import { signIn, signOut } from "next-auth/react"
 
-const UserIcon = () => {
-    const user = true;
+
+
+const UserIcon = ({ user }) => {
+    // const user = true;
     const [isOpen, setIsOpen] = useState(false)
+    const handleSignIn = () => {
+        signIn();
+        setIsOpen(!isOpen)
+    }
+
+    const handleSignOut = () => {
+        signOut();
+        setIsOpen(!isOpen)
+    }
+
     return (
         <div>
             <span className="cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
@@ -13,15 +26,17 @@ const UserIcon = () => {
             </span>
 
             {isOpen &&
-                <div className="absolute z-60 translate-y-[10px] translate-x-[10px] md:-translate-x-[50px]">
+                <div className="absolute h-[80px] z-60 translate-y-[10px] translate-x-[10px] md:-translate-x-[50px] rounded-md bg-secondary border border-white">
                     {user ?
-                        <ul className="flex flex-col justify-evenly items-center bg-secondary border border-white p-2 rounded-md gap-2">
-                            <li className="text-white font-bold cursor-pointer" onClick={() => setIsOpen(!isOpen)}>Account</li>
-                            <li className="text-white font-bold cursor-pointer" onClick={() => setIsOpen(!isOpen)}>Logout</li>
+                        <ul className="flex flex-col justify-between items-center p-2 h-full">
+                            <li className="text-white font-bold cursor-pointer" onClick={() => setIsOpen(!isOpen)}><Link href="/account">Account</Link></li>
+                            <li className="text-white font-bold cursor-pointer" onClick={() => handleSignOut()}>Logout</li>
                         </ul>
                         :
-                        <ul className="flex flex-col justify-evenly items-center bg-secondary border border-white p-2 rounded-md gap-2">
-                            <li className="text-white font-bold cursor-pointer" onClick={() => setIsOpen(!isOpen)}>Sign In</li>
+                        <ul className="flex flex-col justify-between items-center p-2 h-full">
+                            <li className="text-white font-bold cursor-pointer" onClick={() => handleSignIn()}>
+                                Sign In
+                            </li>
                         </ul>
                     }
                 </div>

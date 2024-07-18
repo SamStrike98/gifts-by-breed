@@ -1,5 +1,7 @@
 import Container from "@/components/Container"
+import SectionTitle from "@/components/ui/SectionTitle"
 import Link from "next/link"
+import { auth } from "@/auth"
 
 
 const productsArr = [
@@ -20,11 +22,13 @@ const productsArr = [
     }
 ]
 
-const page = ({ }) => {
+const page = async ({ }) => {
+    const session = await auth()
+
     return (
         <div className='md:pt-0 pt-[100px]'>
             <Container>
-                <h2>Cart</h2>
+                <SectionTitle text={`${session?.user.name}'s Cart`} color="primary" />
                 <div>
                     <ul>
                         {productsArr.map(product => (

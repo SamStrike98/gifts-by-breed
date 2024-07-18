@@ -5,6 +5,8 @@ import Container from "./Container"
 import Link from "next/link"
 import { useState } from "react";
 
+// import { auth, signIn, signOut, useSession } from '@/auth'
+
 // REACT ICONS
 import { MdAccountCircle } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
@@ -42,13 +44,14 @@ const navLinks = [
     },
 ]
 
-const Navbar = () => {
+const Navbar = ({ session }) => {
+    // const { data: session, status } = useSession()
     const [isOpen, setIsOpen] = useState(false)
     return (
         <header className="fixed md:relative md:flex w-full h-[100px] bg-primary md:z-10 z-50">
             <Container>
                 <div className="flex flex-row justify-between items-center px-8 w-full bg-primary z-50">
-                    <Image alt="logo" src="/gbb_logo2.png" height={100} width={100} />
+                    <Link href="/"><Image alt="logo" src="/gbb_logo2.png" height={100} width={100} /></Link>
                     <nav className="flex flex-row w-1/2 justify-evenly">
                         {navLinks.map(item => (
                             <li key={item.id} className="md:flex flex-col justify-end items-center group hidden">
@@ -68,7 +71,7 @@ const Navbar = () => {
                         {/* <span className="cursor-pointer">
                             <MdAccountCircle size={30} color="white" />
                         </span> */}
-                        <UserIcon />
+                        <UserIcon user={session?.user} />
 
                         <span className="md:hidden pr-5 cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
                             {isOpen ? <LiaTimesSolid size={30} color="white" /> : <RxHamburgerMenu size={30} color="white" />}
