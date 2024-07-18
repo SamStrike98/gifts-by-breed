@@ -35,10 +35,10 @@ const Charities = () => {
     return (
         <section className='bg-primary min-h-[500px]'>
             <Container>
-                <div className="flex flex-col items-center justify-center">
+                <div className="min-h-[500px] flex flex-col items-center justify-evenly">
                     <SectionTitle text="Charities" color="white" />
                     <p className="text-white text-2xl">These are some of the charities you support when you buy from us!</p>
-                    <ul className="flex flex-row">
+                    <ul className="w-full flex flex-row justify-between items-center">
                         {charitiesArr.map(item => (
                             <li key={item.id}>
                                 <Link href={item.link}>
@@ -47,7 +47,8 @@ const Charities = () => {
                             </li>
                         ))}
                     </ul>
-                    <Button text="All Charities" color="secondary" textColor="white" />
+                    <Link href="/charities" className="bg-secondary px-2 py-2 text-white font-bold text-lg rounded-md hover:bg-opacity-90">All Charities</Link>
+                    {/* <Button text="All Charities" color="secondary" textColor="white" /> */}
                 </div>
             </Container>
         </section>
