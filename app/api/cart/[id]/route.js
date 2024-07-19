@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
-import { addProductToUserCart, getCart } from "@/queries/users";
+import { addProductToUserCart, getCart, removeProductFromUserCart } from "@/queries/users";
 import dbConnect from "@/lib/mongo";
 import { auth } from "@/auth";
 import mongoose from "mongoose";
 
+
+// REMOVE PRODUCT FROM CART
 export const PATCH = async (request) => {
 
     const session = await auth()
@@ -16,15 +18,15 @@ export const PATCH = async (request) => {
 
 
         // Update the DB
-        await addProductToUserCart(session?.user.id, product);
-        console.log("Product Added:", product);
+        await removeProductFromUserCart(session?.user.id, product);
+        console.log("Product Removed:", product);
 
 
-        return new NextResponse("product has been added to cart", {
+        return new NextResponse("product has been removed from cart", {
             status: 201
         });
     } catch (error) {
-        console.error("Error adding product to cart:", error);
+        console.error("Error removing product from cart:", error);
         return new NextResponse(error.message, {
             status: 500
         });
@@ -32,6 +34,8 @@ export const PATCH = async (request) => {
 
 };
 
+
+// GET SIGNED IN USER'S CART
 export const GET = auth(async function (request, { params }) {
     console.log(request)
     if (request.auth?.user.id === params.id) {

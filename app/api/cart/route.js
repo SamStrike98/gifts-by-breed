@@ -4,6 +4,8 @@ import dbConnect from "@/lib/mongo";
 import { auth } from "@/auth";
 import mongoose from "mongoose";
 
+
+// ADD PRODUCT TO SIGNED IN USER'S CART
 export const PATCH = async (request) => {
 
     const session = await auth()
@@ -14,10 +16,14 @@ export const PATCH = async (request) => {
         await dbConnect();
         console.log("Database connected");
 
+        const cartItem = {
+            ...product,
+            id: `${product._id}${Date.now()}`
+        }
 
         // Update the DB
-        await addProductToUserCart(session?.user.id, product);
-        console.log("Product Added:", product);
+        await addProductToUserCart(session?.user.id, cartItem);
+        console.log("Product Added:", cartItem);
 
 
         return new NextResponse("product has been added to cart", {
