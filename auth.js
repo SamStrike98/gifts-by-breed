@@ -22,7 +22,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     image: profile.picture,
                     // Add a new one
                     displayName: profile.name,
-                    cart: []
+                    cart: [],
+                    orders: []
                 };
             },
 

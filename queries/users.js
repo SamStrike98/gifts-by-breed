@@ -37,3 +37,31 @@ export async function getCart(userId) {
         throw new Error(error)
     }
 }
+
+export async function addToOrders(userId, order) {
+    console.log(userId, order)
+    try {
+        const user = await User.findOneAndUpdate(
+            { _id: userId },
+            { $push: { orders: order } },
+            { new: true }
+        );
+        return user;
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+
+export async function clearCart(userId) {
+    try {
+        const user = await User.findOneAndUpdate(
+            { _id: userId },
+            { $set: { 'cart': [] } },
+            { new: true }
+        );
+        return user;
+    } catch (error) {
+        throw new Error(error)
+    }
+}

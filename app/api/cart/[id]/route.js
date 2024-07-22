@@ -37,7 +37,7 @@ export const PATCH = async (request) => {
 
 // GET SIGNED IN USER'S CART
 export const GET = auth(async function (request, { params }) {
-    console.log(request)
+    // console.log(request)
     if (request.auth?.user.id === params.id) {
         try {
 
@@ -46,7 +46,7 @@ export const GET = auth(async function (request, { params }) {
             // console.log(session?.user.id)
 
             const cart = await getCart(request.auth?.user.id);
-            console.log("Fetched cart:", cart);
+            // console.log("Fetched cart:", cart);
 
             return new NextResponse(JSON.stringify(cart), {
                 status: 200

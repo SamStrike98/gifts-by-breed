@@ -1,0 +1,68 @@
+import Stripe from "stripe";
+import { NextRequest, NextResponse } from "next/server";
+import { headers } from "next/headers";
+import { addToOrders, clearCart } from "@/queries/users";
+import dbConnect from "@/lib/mongo";
+import { auth } from "@/auth";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+
+export const POST = auth(async function POST(req) {
+    const authSession = await auth()
+    const userId = authSession?.user.id
+    const body = await req.text();
+    const signature = headers().get('Stripe-Signature')
+
+    let event;
+
+    try {
+        event = stripe.webhooks.constructEvent(
+            body,
+            signature,
+            process.env.STRIPE_WEBHOOK_SECRET
+        )
+    } catch (error) {
+        return new NextResponse("invalid signature", { status: 400 })
+    }
+
+    const session = event.data.object
+
+    if (event.type === "checkout.session.completed") {
+        console.log('session', session)
+
+        try {
+
+            await dbConnect();
+
+            const lineItems = await stripe.checkout.sessions.listLineItems(
+                session.id
+            );
+            console.log("Database connected");
+            console.log(session)
+
+            const newOrder = {
+                sessionId: session.id,
+                amountTotal: session.amount_total,
+                userId: session.metadata.userId,
+                products: lineItems,
+                createdAt: session.created
+            }
+
+            const user = await addToOrders(session.metadata.userId, newOrder);
+            const newUser = await clearCart(session.metadata.userId);
+            // console.log("Fetched cart:", cart);
+            console.log(session)
+
+            return new NextResponse(JSON.stringify(user), {
+                status: 200
+            });
+        } catch (error) {
+            console.error("Error fetching cart:", error);
+            return new NextResponse(error.message, {
+                status: 500
+            });
+        }
+    }
+
+    return new NextResponse("ok", { status: 200 })
+})

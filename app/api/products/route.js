@@ -9,7 +9,7 @@ export const GET = async (request) => {
         console.log("Database connected");
 
         const products = await getAllProducts();
-        console.log("Fetched products:", products);
+        // console.log("Fetched products:", products);
 
         return new NextResponse(JSON.stringify(products), {
             status: 200

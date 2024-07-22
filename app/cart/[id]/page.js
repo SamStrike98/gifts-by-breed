@@ -5,6 +5,7 @@ import { auth } from "@/auth"
 import { headers } from "next/headers"
 import RemoveFromCartBtn from "@/components/singleProduct/RemoveFromCartBtn"
 import Image from "next/image"
+import CheckoutBtn from "@/components/CheckoutBtn"
 
 
 // const productsArr = [
@@ -50,7 +51,7 @@ const page = async () => {
         });
         return Object.values(result)
     }
-    // console.log('FUNCTION FINISHED', convert(data[0].cart))
+
 
     const totalPrice = data[0].cart.reduce((acc, curr) => acc + curr.price, 0)
     return (
@@ -77,7 +78,7 @@ const page = async () => {
                                 <div className="flex flex-row justify-between border-t border-black"><p>Total:</p> <p className="font-extrabold text-lg">£{totalPrice.toFixed(2)}</p></div>
                                 <div>£{(totalPrice * 0.3).toFixed(2)} going to charity</div>
                             </ul>
-
+                            <CheckoutBtn products={data[0].cart} />
                         </div>
                     }
                 </div>
