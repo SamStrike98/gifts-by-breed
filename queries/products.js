@@ -11,7 +11,7 @@ export async function createProduct(product) {
 
 export async function getAllProducts() {
     try {
-        const products = await Product.find({ isPublic: true });
+        const products = await Product.find({ active: true });
         return products;
     } catch (error) {
         throw new Error(error)

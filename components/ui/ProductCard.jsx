@@ -12,7 +12,7 @@ const ProductCard = ({ id, name, price, img }) => {
                     </div>
                     <div className="flex flex-col items-center">
                         <h4 className='font-bold text-lg text-white text-center'>{name}</h4>
-                        <p className="text-white font-bold p-2 bg-primary rounded-md">£{price.toFixed(2)}</p>
+                        <p className="text-white font-bold p-2 bg-primary rounded-md">£{(price * 0.01).toFixed(2)}</p>
                     </div>
                 </div>
             </Link>

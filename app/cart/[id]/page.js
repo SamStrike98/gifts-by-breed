@@ -70,13 +70,13 @@ const page = async () => {
                                         <Image src={product.img} alt={product.name} width={100} height={100} />
                                         <div>{product.count}</div>
                                         <div className="font-bold">
-                                            ${product.price.toFixed(2)}
+                                            ${(product.price * 0.01).toFixed(2)}
                                         </div>
                                         <RemoveFromCartBtn product={product} session={session} />
                                     </li>
                                 ))}
-                                <div className="flex flex-row justify-between border-t border-black"><p>Total:</p> <p className="font-extrabold text-lg">£{totalPrice.toFixed(2)}</p></div>
-                                <div>£{(totalPrice * 0.3).toFixed(2)} going to charity</div>
+                                <div className="flex flex-row justify-between border-t border-black"><p>Total:</p> <p className="font-extrabold text-lg">£{(totalPrice * 0.01).toFixed(2)}</p></div>
+                                <div>£{(totalPrice * 0.01 * 0.3).toFixed(2)} going to charity</div>
                             </ul>
                             <CheckoutBtn products={data[0].cart} />
                         </div>

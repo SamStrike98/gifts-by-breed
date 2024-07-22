@@ -38,6 +38,15 @@ export async function getCart(userId) {
     }
 }
 
+export async function getAllOrders(userId) {
+    try {
+        const orders = await User.find({ _id: userId }, { orders: 1 });
+        return orders;
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
 export async function addToOrders(userId, order) {
     console.log(userId, order)
     try {

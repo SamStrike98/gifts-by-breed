@@ -2,8 +2,10 @@ import Stripe from "stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { addToOrders, clearCart } from "@/queries/users";
+import { createProduct } from "@/queries/products";
 import dbConnect from "@/lib/mongo";
 import { auth } from "@/auth";
+import mongoose from "mongoose";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -41,6 +43,7 @@ export const POST = auth(async function POST(req) {
             console.log(session)
 
             const newOrder = {
+                id: new mongoose.Types.ObjectId(),
                 sessionId: session.id,
                 amountTotal: session.amount_total,
                 userId: session.metadata.userId,
@@ -57,7 +60,48 @@ export const POST = auth(async function POST(req) {
                 status: 200
             });
         } catch (error) {
-            console.error("Error fetching cart:", error);
+            console.error("Error:", error);
+            return new NextResponse(error.message, {
+                status: 500
+            });
+        }
+    }
+
+    if (event.type === "price.created") {
+        // console.log('session', session)
+
+        try {
+
+            await dbConnect();
+
+
+            console.log("Database connected");
+            console.log(session)
+
+            // const price = await stripe.prices.retrieve(session.id);
+
+            const productDetails = await stripe.products.retrieve(session.product);
+
+            const newProduct = {
+                prodId: productDetails.id,
+                createdAt: productDetails.created,
+                active: productDetails.active,
+                name: productDetails.name,
+                description: productDetails.description,
+                priceId: session.id,
+                price: session.unit_amount,
+                featured: productDetails.metadata.featured,
+                breed: productDetails.metadata.breed
+            }
+
+            const product = await createProduct(newProduct);
+
+
+            return new NextResponse(JSON.stringify(product), {
+                status: 200
+            });
+        } catch (error) {
+            console.error("Error:", error);
             return new NextResponse(error.message, {
                 status: 500
             });

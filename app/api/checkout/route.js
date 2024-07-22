@@ -11,7 +11,7 @@ export const POST = auth(async function POST(request) {
         let data = await request.json();
         let products = data.products;
         let lineItems = products.map(product => ({
-            price: product.stripeId,
+            price: product.priceId,
             quantity: 1
         }));
 

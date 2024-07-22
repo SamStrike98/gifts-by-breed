@@ -8,19 +8,23 @@ const productSchema = new mongoose.Schema({
         required: true,
         type: String
     },
+    prodId: {
+        required: true,
+        type: String
+    },
+    priceId: {
+        required: true,
+        type: String
+    },
     createdAt: {
         required: true,
         type: Date,
     },
-    isPublic: {
+    active: {
         required: true,
         type: Boolean
     },
     price: {
-        required: true,
-        type: Number
-    },
-    stock: {
         required: true,
         type: Number
     },
@@ -30,14 +34,13 @@ const productSchema = new mongoose.Schema({
     },
     featured: {
         required: true,
-        type: Boolean
+        type: String
     },
     breed: {
         required: true,
         type: String
     },
     img: {
-        required: true,
         type: String
     }
 
