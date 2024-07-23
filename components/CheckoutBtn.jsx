@@ -23,7 +23,7 @@ const CheckoutBtn = ({ products }) => {
     }
 
     return (
-        <button className='p-3 font-bold text-lg bg-primary' onClick={handleCheckout}>Checkout</button>
+        <button className='p-3 font-bold text-lg bg-secondary text-white rounded-md hover:bg-opacity-85' onClick={handleCheckout}>Checkout</button>
     )
 }
 

@@ -39,6 +39,9 @@ export const POST = auth(async function POST(req) {
             const lineItems = await stripe.checkout.sessions.listLineItems(
                 session.id
             );
+
+            const createdAt = (new Date(session.created * 1000)).toLocaleDateString()
+
             console.log("Database connected");
             console.log(session)
 
@@ -48,7 +51,7 @@ export const POST = auth(async function POST(req) {
                 amountTotal: session.amount_total,
                 userId: session.metadata.userId,
                 products: lineItems,
-                createdAt: session.created
+                createdAt: createdAt
             }
 
             const user = await addToOrders(session.metadata.userId, newOrder);

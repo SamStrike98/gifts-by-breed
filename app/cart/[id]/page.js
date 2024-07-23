@@ -8,24 +8,6 @@ import Image from "next/image"
 import CheckoutBtn from "@/components/CheckoutBtn"
 
 
-// const productsArr = [
-//     {
-//         id: 1,
-//         name: "Dachshund Bookmark",
-//         quantity: "2"
-//     },
-//     {
-//         id: 2,
-//         name: "Beagle Bookmark",
-//         quantity: "1"
-//     },
-//     {
-//         id: 1,
-//         name: " Bookmark",
-//         quantity: "1"
-//     }
-// ]
-
 const page = async () => {
     const headersList = headers();
     const cookie = headersList.get('cookie');
@@ -59,27 +41,32 @@ const page = async () => {
             <Container>
                 <SectionTitle text={`${session?.user.name}'s Cart`} color="primary" />
                 <div className="w-full mt-[20px]">
-                    {data &&
-                        <div className="w-full flex flex-row justify-center">
-                            <ul className="flex flex-col gap-4  w-[250px]">
-                                {data[0].cart.map(product => (
-                                    <li key={product.id} className="flex flex-row justify-between items-center">
-                                        <Link href={`/products/${product._id}`}>
-                                            {product.name}
-                                        </Link>
-                                        <Image src={product.img} alt={product.name} width={100} height={100} />
-                                        <div>{product.count}</div>
-                                        <div className="font-bold">
-                                            ${(product.price * 0.01).toFixed(2)}
-                                        </div>
-                                        <RemoveFromCartBtn product={product} session={session} />
-                                    </li>
-                                ))}
-                                <div className="flex flex-row justify-between border-t border-black"><p>Total:</p> <p className="font-extrabold text-lg">£{(totalPrice * 0.01).toFixed(2)}</p></div>
-                                <div>£{(totalPrice * 0.01 * 0.3).toFixed(2)} going to charity</div>
-                            </ul>
-                            <CheckoutBtn products={data[0].cart} />
-                        </div>
+                    {data && data[0].cart.length > 0 ?
+                        <div>
+                            <div className="w-full flex flex-row justify-center">
+                                <ul className="flex flex-col gap-4  w-[250px]">
+                                    {data[0].cart.map(product => (
+                                        <li key={product.id} className="flex flex-row justify-between items-center">
+                                            <Link href={`/products/${product._id}`}>
+                                                {product.name}
+                                            </Link>
+                                            <Image src={product.img} alt={product.name} width={100} height={100} />
+                                            <div>{product.count}</div>
+                                            <div className="font-bold">
+                                                ${(product.price * 0.01).toFixed(2)}
+                                            </div>
+                                            <RemoveFromCartBtn product={product} session={session} />
+                                        </li>
+                                    ))}
+                                    <div className="flex flex-row justify-between border-t border-black"><p>Total:</p> <p className="font-extrabold text-lg">£{(totalPrice * 0.01).toFixed(2)}</p></div>
+                                    <div>£{(totalPrice * 0.01 * 0.3).toFixed(2)} going to charity</div>
+                                </ul>
+
+                            </div>
+                            {<div className="flex flex-row justify-center mt-5"><CheckoutBtn products={data[0].cart} /></div>}
+                        </div> :
+
+                        <div className="flex flex-row justify-center">No Products in your cart...</div>
                     }
                 </div>
             </Container>

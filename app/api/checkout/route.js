@@ -21,7 +21,7 @@ export const POST = auth(async function POST(request) {
             line_items: lineItems,
             mode: 'payment',
             success_url: `${process.env.URL}/cart/order-complete/session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: "http://localhost:3001/cart",
+            cancel_url: `http://localhost:3001/cart/${authSession?.user.id}`,
             metadata: {
                 userId: authSession?.user.id,
                 // products: products
