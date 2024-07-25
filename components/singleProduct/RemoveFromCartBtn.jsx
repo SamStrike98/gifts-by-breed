@@ -30,7 +30,7 @@ const RemoveFromCartBtn = ({ product, session }) => {
         }
     }
     return (
-        <button onClick={handleClick} className='rounded-md px-2 py-2 font-bold hover:bg-opacity-85 text-white mb-5'>
+        <button onClick={handleClick} className='rounded-md font-bold hover:bg-opacity-85 text-white'>
             <BsTrash size={25} className="text-red-500" />
         </button>
 

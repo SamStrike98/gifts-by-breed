@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 
-const ProductsImages = ({ img, alt }) => {
+const ProductsImages = ({ images, alt }) => {
     const [largeImg, setLargeImg] = useState(0)
     const arr = [
         {
@@ -34,14 +34,14 @@ const ProductsImages = ({ img, alt }) => {
 
         <div className='flex flex-row md:flex-col gap-2 my-10'>
             <div>
-                <Image src={img} alt={alt} width={250} height={250} className="rounded-md object-cover" />
+                <Image src={images[largeImg]} alt={alt} width={250} height={250} className="rounded-md object-cover" />
                 {/* <div className='w-[250px] h-[250px] flex flex-row justify-center items-center rounded-md bg-blue-400 text-white text-4xl'>{arr[largeImg].text}</div> */}
             </div>
             <ul className='flex flex-col md:flex-row justify-between'>
 
 
-                {arr.length > 1 && arr.map(item => (
-                    <div key={item.id} className={`${sizes[arr.length]} flex flex-row justify-center items-center rounded-md bg-blue-400 text-white text-2xl cursor-pointer`} onClick={() => setLargeImg(item.id)}>{item.text}</div>
+                {images.length > 1 && images.map(item => (
+                    <div key={item.id} className={`${sizes[images.length]} flex flex-row justify-center items-center rounded-md bg-blue-400 text-white text-2xl cursor-pointer`} onClick={() => setLargeImg(item.id)}>{item.text}</div>
                 ))}
                 {/* <div className='w-[75px] h-[75px] rounded-md bg-blue-400 text-white text-2xl cursor-pointer' onClick={() => setLargeImg(0)}>0</div>
 

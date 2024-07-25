@@ -3,7 +3,8 @@
 import Image from "next/image"
 import Container from "./Container"
 import Link from "next/link"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 
 // import { auth, signIn, signOut, useSession } from '@/auth'
 
@@ -47,6 +48,18 @@ const navLinks = [
 const Navbar = ({ session }) => {
     // const { data: session, status } = useSession()
     const [isOpen, setIsOpen] = useState(false)
+    const [cartTotal, setCartTotal] = useState(session?.user.cart.length)
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        function getSession() {
+            setCartTotal(session?.user.cart.length)
+            setLoading(false)
+        }
+
+        getSession()
+    }, [session])
+
     return (
         <header className="fixed md:relative md:flex w-full h-[100px] bg-primary md:z-10 z-50">
             <Container>
@@ -66,7 +79,7 @@ const Navbar = ({ session }) => {
                         {/* <span className="cursor-pointer">
                             <FaShoppingCart size={30} color="white" />
                         </span> */}
-                        <CartIcon userId={session?.user.id} cartTotal={session?.user.cart.length} />
+                        <CartIcon userId={session?.user.id} cartTotal={cartTotal} />
 
                         {/* <span className="cursor-pointer">
                             <MdAccountCircle size={30} color="white" />

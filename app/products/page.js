@@ -16,7 +16,7 @@ const page = async () => {
 
                         <ul className='flex flex-row flex-wrap gap-1 w-full justify-center sm:justify-between items-center px-3'>
                             {products.map(product => (
-                                <ProductCard key={product._id} id={product._id} name={product.name} price={product.price} img={product.img} />
+                                <ProductCard key={product._id} id={product._id} name={product.name} price={product.price} img={product.images[0]} />
                             ))}
                         </ul>
                     }

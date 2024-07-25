@@ -4,9 +4,9 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'res.cloudinary.com',
+                hostname: 'files.stripe.com',
                 port: '',
-                pathname: '/dghpi4fiq/image/upload/**',
+                pathname: '/links/**',
             },
         ],
     },

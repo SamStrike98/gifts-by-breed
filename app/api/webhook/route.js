@@ -54,8 +54,9 @@ export const POST = auth(async function POST(req) {
                 createdAt: createdAt
             }
 
-            const user = await addToOrders(session.metadata.userId, newOrder);
             const newUser = await clearCart(session.metadata.userId);
+            const user = await addToOrders(session.metadata.userId, newOrder);
+
             // console.log("Fetched cart:", cart);
             console.log(session)
 

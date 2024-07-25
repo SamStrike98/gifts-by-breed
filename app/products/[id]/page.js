@@ -35,7 +35,7 @@ const page = async ({ params }) => {
                         </div>
 
                         <div className='w-[80%] md:w-1/3 flex flex-col items-center'>
-                            <ProductsImages img={product.img} alt={product.title} />
+                            <ProductsImages images={product.images} alt={product.title} />
                         </div>
 
                     </div> :

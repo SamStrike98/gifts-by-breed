@@ -44,18 +44,19 @@ const page = async () => {
                     {data && data[0].cart.length > 0 ?
                         <div>
                             <div className="w-full flex flex-row justify-center">
-                                <ul className="flex flex-col gap-4  w-[250px]">
+                                <ul className="flex flex-col gap-4  w-[250px] sm:w-[80%] ">
                                     {data[0].cart.map(product => (
-                                        <li key={product.id} className="flex flex-row justify-between items-center">
+                                        <li key={product.id} className="flex flex-row justify-between items-end">
+                                            <RemoveFromCartBtn product={product} session={session} />
                                             <Link href={`/products/${product._id}`}>
                                                 {product.name}
                                             </Link>
-                                            <Image src={product.img} alt={product.name} width={100} height={100} />
+                                            <Image src={product.images[0]} alt={product.name} width={100} height={100} />
                                             <div>{product.count}</div>
                                             <div className="font-bold">
-                                                ${(product.price * 0.01).toFixed(2)}
+                                                £{(product.price * 0.01).toFixed(2)}
                                             </div>
-                                            <RemoveFromCartBtn product={product} session={session} />
+
                                         </li>
                                     ))}
                                     <div className="flex flex-row justify-between border-t border-black"><p>Total:</p> <p className="font-extrabold text-lg">£{(totalPrice * 0.01).toFixed(2)}</p></div>
