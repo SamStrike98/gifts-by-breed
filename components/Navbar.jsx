@@ -46,19 +46,27 @@ const navLinks = [
 ]
 
 const Navbar = ({ session }) => {
+    console.log(session)
     // const { data: session, status } = useSession()
     const [isOpen, setIsOpen] = useState(false)
-    const [cartTotal, setCartTotal] = useState(session?.user.cart.length)
+    const [cartTotal, setCartTotal] = useState()
     const [loading, setLoading] = useState(true);
 
+
     useEffect(() => {
-        function getSession() {
-            setCartTotal(session?.user.cart.length)
+
+        async function getCart() {
+            const data = await fetch(`/api/cart/${session?.user.id}`)
+            const cart = await data.json()
+            setCartTotal(cart[0].cart.length)
             setLoading(false)
+            console.log('cart', cart[0].cart.length)
         }
 
-        getSession()
+        { session?.user && getCart() }
+
     }, [session])
+
 
     return (
         <header className="fixed md:relative md:flex w-full h-[100px] bg-primary md:z-10 z-50">

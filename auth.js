@@ -1,12 +1,18 @@
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
+import CredentialsProvider from "next-auth/providers/credentials";
 import dbConnect from "@/lib/mongo"
 import User from '@/models/user-model'
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
 import clientPromise from "./lib/db"
 import { redirect } from "next/navigation"
+import bcrypt from "bcryptjs"
+import { getCart } from "./queries/users";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+    // session: {
+    //     strategy: 'jwt'
+    // },
     adapter: MongoDBAdapter(clientPromise),
     providers: [
         GoogleProvider({
@@ -34,14 +40,62 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     response_type: 'code'
                 }
             }
+        }),
+        CredentialsProvider({
+            credentials: {
+                email: { label: "Email", type: "text" },
+                password: { label: "password", type: "password" }
+            },
+            async authorize(credentials) {
+                if (!credentials) return null;
+                await dbConnect()
+                try {
+
+                    const user = await User.findOne({ email: credentials?.email })
+
+                    if (user) {
+                        const isMatch = await bcrypt.compare(
+                            credentials.password,
+                            user.password
+                        );
+
+                        if (isMatch) {
+                            console.log('email and password match', user)
+                            return user;
+                        } else {
+                            console.log("email and password do not match")
+                            throw new Error("Password incorrect")
+                        }
+                    } else {
+                        throw new Error("User not found")
+                    }
+                } catch (error) {
+                    throw new Error(error)
+                }
+            }
         })
     ],
-
+    session: {
+        strategy: 'jwt'
+    },
 
     callbacks: {
-        session({ session, user }) {
+        async jwt({ token, user }) {
+            // Persist the OAuth access_token and or the user id to the token right after signin
+            if (user) {
+                token.accessToken = user.access_token;
+                token.id = user.id;
+            }
+            return token;
+        },
+        async session({ session, token, user }) {
+            // Send properties to the client, like an access_token and user id from a provider.
+            session.accessToken = token.accessToken;
+            session.user.id = token.id;
+            session.user.cart = []
 
-            return session
+
+            return session;
         },
     },
 

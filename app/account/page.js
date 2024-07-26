@@ -20,7 +20,8 @@ const page = async () => {
     }, { cache: 'no-store' })
     const data = await res.json()
 
-    console.log(data[0].orders[1]?.products.data)
+    // console.log(data[0].orders[1]?.products.data)
+    console.log(data)
     return (
         <div className='bg-[#f2f2f2] md:pt-0 pt-[100px] min-h-[80vh]'>
             <Container>
