@@ -6,33 +6,38 @@ import mongoose from "mongoose";
 
 
 // REMOVE PRODUCT FROM CART
-export const PATCH = async (request) => {
+export const PATCH = auth(async function PATCH(request) {
 
-    const session = await auth()
-    try {
-        const { product } = await request.json();
+    if (request.auth?.user) {
+        const session = await auth()
+        try {
+            const { product } = await request.json();
 
-        // Create a DB Connection
-        await dbConnect();
-        console.log("Database connected");
-
-
-        // Update the DB
-        await removeProductFromUserCart(session?.user.id, product);
-        console.log("Product Removed:", product);
+            // Create a DB Connection
+            await dbConnect();
+            console.log("Database connected");
 
 
-        return new NextResponse("product has been removed from cart", {
-            status: 201
-        });
-    } catch (error) {
-        console.error("Error removing product from cart:", error);
-        return new NextResponse(error.message, {
-            status: 500
-        });
+            // Update the DB
+            await removeProductFromUserCart(session?.user.id, product);
+            console.log("Product Removed:", product);
+
+
+            return new NextResponse("product has been removed from cart", {
+                status: 201
+            });
+        } catch (error) {
+            console.error("Error removing product from cart:", error);
+            return new NextResponse(error.message, {
+                status: 500
+            });
+        }
+    } else {
+        return NextResponse.json({ message: "Not authorized" }, { status: 401 })
     }
 
-};
+
+});
 
 
 // GET SIGNED IN USER'S CART

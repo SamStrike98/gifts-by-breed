@@ -5,10 +5,16 @@ import { headers } from "next/headers"
 import Link from 'next/link'
 import { FaPlus } from "react-icons/fa";
 import OrderBox from '@/components/OrderBox'
+import { redirect } from 'next/navigation'
 
 
 const page = async () => {
     const session = await auth()
+
+    if (!session?.user) {
+        return redirect("/")
+    }
+
     const headersList = headers();
     const cookie = headersList.get('cookie');
 

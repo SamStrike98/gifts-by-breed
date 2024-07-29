@@ -92,6 +92,7 @@ export const POST = auth(async function POST(req) {
                 active: productDetails.active,
                 name: productDetails.name,
                 description: productDetails.description,
+                images: productDetails.images,
                 priceId: session.id,
                 price: session.unit_amount,
                 featured: productDetails.metadata.featured,

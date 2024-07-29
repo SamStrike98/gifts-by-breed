@@ -6,6 +6,7 @@ import { headers } from "next/headers"
 import RemoveFromCartBtn from "@/components/singleProduct/RemoveFromCartBtn"
 import Image from "next/image"
 import CheckoutBtn from "@/components/CheckoutBtn"
+import { redirect } from "next/navigation"
 
 
 const page = async () => {
@@ -14,6 +15,9 @@ const page = async () => {
 
     const session = await auth()
 
+    if (!session?.user) {
+        return redirect('/')
+    }
     const res = await fetch(`${process.env.URL}/api/cart/${session?.user.id}`, {
         method: "GET",
         headers: {
@@ -22,20 +26,9 @@ const page = async () => {
     }, { cache: 'no-store' })
     const data = await res.json()
 
-    const convert = (cart) => {
-        const result = {};
-        cart.forEach((obj) => {
-            const key = obj._id;
-            if (!result[key]) {
-                result[key] = { ...obj, count: 0 }
-            };
-            result[key].count += 1
-        });
-        return Object.values(result)
-    }
-
-
     const totalPrice = data[0].cart.reduce((acc, curr) => acc + curr.price, 0)
+
+
     return (
         <div className='md:pt-0 pt-[100px] min-h-[calc(80vh)]'>
             <Container>

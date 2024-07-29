@@ -7,6 +7,7 @@ import React from 'react'
 import FeaturedProducts from '@/sections/FeaturedProducts'
 import SimilarProducts from '@/sections/SimilarProducts'
 import { auth } from '@/auth'
+import Link from 'next/link'
 
 // const product = {
 //     id: 1,
@@ -30,7 +31,7 @@ const page = async ({ params }) => {
 
                         <div className='w-[80%] md:w-1/3 flex flex-col items-center'>
                             <ProductDetails name={product.name} price={product.price} />
-                            <AddToCartBtn product={product} session={session} />
+                            {session?.user ? <AddToCartBtn product={product} session={session} /> : <p className='mb-5 font-bold'><Link href={'/login'} className='text-blue-400'>Login</Link> to Purchase</p>}
                             <ProductDescription description={product.description} />
                         </div>
 

@@ -18,6 +18,15 @@ export async function getAllProducts() {
     }
 }
 
+export async function getAllFeaturedProducts() {
+    try {
+        const products = await Product.find({ active: true, featured: true }).limit(3);
+        return products;
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
 export async function getProductById(id) {
     try {
         const product = await Product.findById(id);
